@@ -1,0 +1,84 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int cant_prod_ilimitados; //cantidad de productor que el usuario quiera ingresar 
+  float kg; //Peso de productos
+  int cant_prod_norefri;  //cantidad de productos no refrigerados
+  int cant_prod_refri; //cantidad de prod que requieren refigeracion
+  int cont;//contador para el while 
+  int r_producto; //si es refrigerado o no
+  string n_producto;//nombre producto
+  int cont_prod_pro_refri_pes_entre;//cantidad de productos procesados,que necesitan refrijeracion y pesa entre 1 y 2 kg
+  int cont_prod_no_pro_refri_pes_dos; //cantidad de productos no procesados,que necesitan refrijeracion y pesan 2 Kg
+  int p_producto;//si es procesado o no
+  int p_r_kg; //procesados refrigeracion y - de un kg
+  
+  cont=1;//el contador del while
+   
+  p_r_kg=0;//contador productos
+  cant_prod_refri=0;//cant de prod refrigerados
+  cant_prod_norefri=0;//cant de prod no refrigerados
+  cont_prod_pro_refri_pes_entre=0;//cantidad de productos procesados
+  cont_prod_no_pro_refri_pes_dos=0;//cant productos
+  
+  cout << "Ingrese la cantidad de productos que desee: "<<endl; //el usuario ingresa cierta cant de prod
+  cin >> cant_prod_ilimitados; 
+  
+  
+  while(cont <= cant_prod_ilimitados){/////////////////////////////////////////////////////////////////////
+    cout << "Ingrese el nombre del producto: "<< endl;
+    cin>> n_producto; //nombre del producto
+    cout << "Ingrese si el producto necesita refrigeracion [1=refrigerados | 2=no refrigerados]: " << endl;
+    cin >>r_producto; //tipo de producto congelado o no
+    cout<<"ingrese el peso del producto en kilogramos: "<<endl;//ingreso del peso
+    cin>>kg;
+    cout << "Ingrese si el producto es procesado [1=procesado | 2=no procesado]: " << endl;
+    cin >>p_producto;//ingresa si el producto es procesado o no
+    
+    if(r_producto == 1){//refrigerados
+         
+        cant_prod_refri= cant_prod_refri + 1; //actua el contador en los productos refrigerados
+    }
+    else{
+      
+      if(r_producto ==2 ){//
+          
+        cant_prod_norefri= cant_prod_norefri + 1; //actua el contador en los productos no refrigerados
+        
+      }
+      else
+    {
+     cout << "Error al ingresar este producto" << endl; //muestra un error al no haber ingresado 1 o 2
+    } 
+      
+    }
+    //Ian
+    if (p_producto==2 && r_producto==1 && kg>2){//este if es para los productos no procesados,refrigerados y que pesen mas de 2 kg.
+      cont_prod_no_pro_refri_pes_dos=cont_prod_no_pro_refri_pes_dos+1;
+    }
+    
+    if((p_producto==1)&&(r_producto==1)&&(kg>1 && kg<2)){//este if es para los productos procesados,refrigerados y que pesen entre 1 y 2 kg.
+      
+      cont_prod_pro_refri_pes_entre= cont_prod_pro_refri_pes_entre + 1;
+      
+    }  
+    
+    //consigna bauti 
+    if(r_producto==1 && kg <= 1 && p_producto == 1){//r_producto-(si es congelado o no) p_producto (si es procesado o no) kg(kg del prodcuto)
+      p_r_kg=p_r_kg+1;
+    }
+    
+    cout<<"_________________________________________________________________" << endl;//funciona como separador
+    cont = cont +1;
+  }
+  //mostrar datos
+  cout << "La cantidad de productos refrigerados son: " << cant_prod_refri << endl;// mostrar datos recompilados 
+  cout << "La cantidad de productos no refrigerados son: " <<cant_prod_norefri <<endl;
+  cout << "La cantidad de productos procesados, que necestan refrigeracion y pesan menos de 1 kg son: " <<p_r_kg<< endl;
+  cout << "La cantidad de productos procesados, que necestan refrigeracion y pesan entre 1 y 2 kg son: " << cont_prod_pro_refri_pes_entre << endl;
+  cout << "La cantidad de productos no procesados, que necestan refrigeracion y pesan mas de 2 kg son: " <<cont_prod_no_pro_refri_pes_dos << endl; 
+  
+	return 0;
+}
